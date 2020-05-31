@@ -2,7 +2,7 @@
   "name": "Climate control",
   "short_name": "Climate control",
   "description": "Climate control",
-  "start_url": "/",
+  "start_url": "/climate-control-ui",
   "background_color": "#FFFFFF",
   "theme_color": "#3f51b5",
   "icons": [{
