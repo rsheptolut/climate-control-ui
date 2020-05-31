@@ -1,0 +1,83 @@
+<mat-spinner *ngIf="!device"></mat-spinner>
+
+<mat-card *ngIf="device" class="card">
+    <div class="page-header">
+        <h1>{{device.settings.name}}</h1>
+        
+        <button mat-icon-button (click)="goToSettings()"><mat-icon>settings</mat-icon></button>
+    </div>
+
+    <br/>
+    <div class="temperature">
+        <div class="temperature__value">
+            {{device.state.lastAverageTemperature}}
+        </div>
+    </div>
+
+    <br/>
+    <div class="aircon">
+        <div class="aircon__heading">A/C</div>
+        <div class="aircon__state"></div>
+        <button mat-raised-button color="primary" (click)="turnOnOff(true)">Turn on now</button>
+        &nbsp;&nbsp;
+        <button mat-raised-button color="accent" (click)="turnOnOff(false)">Turn off now</button>
+    </div>
+
+    <form #form="ngForm">
+        <br/>
+        <div class="row">
+            <mat-slide-toggle name="automationOn" [(ngModel)]="device.settings.automationOn">Automation (now {{device.settings.automationOn ? 'ON' : 'OFF'}})</mat-slide-toggle>
+        </div>
+        
+        <br/>
+        <br/>
+        <div class="row">
+            <mat-slide-toggle name="onDuringDay" [(ngModel)]="device.settings.onDuringDay">Turn on during day ({{device.settings.onDuringDay ? 'YES' : 'NO'}})</mat-slide-toggle>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            <mat-form-field class="inline">
+                <mat-label>Day start time:</mat-label>
+                <input matInput type="time" id="dayTimeStart" name="dayTimeStart" min="00:00" max="24:00" [(ngModel)]="device.settings.dayTimeStart">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <p>Keep day temperature from:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            <mat-form-field class="inline">
+                <mat-label>Turn on if below</mat-label>
+                <input name="dayTempOn" matInput [(ngModel)]="device.settings.dayTempOn" type="number" min="1" max="50">
+            </mat-form-field>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            <mat-form-field class="inline">
+                <mat-label>Turn off if above</mat-label>
+                <input name="dayTempOff" matInput [(ngModel)]="device.settings.dayTempOff" type="number" min="1" max="50">
+            </mat-form-field>
+        </div>
+        
+        <br/>
+        <br/>
+        <div class="row">
+            <mat-slide-toggle name="onDuringNight" [(ngModel)]="device.settings.onDuringNight">Turn on during night ({{device.settings.onDuringNight ? 'YES' : 'NO'}})</mat-slide-toggle>     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            <mat-form-field class="inline">
+                <mat-label>Night start time:</mat-label>
+                <input matInput type="time" id="nightTimeStart" name="nightTimeStart" min="00:00" max="24:00" [(ngModel)]="device.settings.nightTimeStart">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <p>Keep night temperature from:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            <mat-form-field class="inline">
+                <mat-label>Turn on if below</mat-label>
+                <input name="nightTempOn" matInput [(ngModel)]="device.settings.nightTempOn" type="number" min="1" max="50">
+            </mat-form-field>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            <mat-form-field class="inline">
+                <mat-label>Turn off if above</mat-label>
+                <input name="nightTempOff" matInput [(ngModel)]="device.settings.nightTempOff" type="number" min="1" max="50">
+            </mat-form-field>
+        </div>
+        
+        <mat-form-field floatLabel="always">
+            <mat-label>Reading override (dbg)</mat-label>
+            <input name="fakeAverageTemperature" matInput [(ngModel)]="device.settings.fakeAverageTemperature" type="number" max="50">
+        </mat-form-field>
+    </form>
+</mat-card>
+
