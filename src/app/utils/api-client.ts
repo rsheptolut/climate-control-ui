@@ -16,7 +16,7 @@ export class ApiClient {
     }
 
     public async get<T>(apiRelativePath: string, query?: object): Promise<T> {
-        return await this.sendRequest(this.http.get<T>(this.apiUrl + apiRelativePath + this.getQueryStr(query) + '?apiKey=' + localStorage.getItem('apiKey'), { headers: this.headers }));
+        return await this.sendRequest(this.http.get<T>(this.apiUrl + apiRelativePath + this.getQueryStr(Object.assign(query || {}, { apiKey: localStorage.getItem('apiKey')})), { headers: this.headers }));
     }
 
     public async post<T>(apiRelativePath: string, body: any = null): Promise<T> {

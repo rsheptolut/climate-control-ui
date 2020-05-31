@@ -14,7 +14,9 @@ export class DeviceListComponent implements OnInit {
     let apiKey = localStorage.getItem('apiKey');
     if (!apiKey) {
       apiKey = prompt('An API_KEY is required for this to work. Please enter below.');
-      localStorage.setItem('apiKey', apiKey);
+      if (apiKey) {
+        localStorage.setItem('apiKey', apiKey);
+      }
     }
     this.router.navigate(['device', 'my-only-device']);
   }
