@@ -1683,12 +1683,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.apiUrl = src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].apiUrl;
         this.updateHeaders();
       }
-      /**
-       * Executes an HTTP GET request to the API.
-       * @param apiRelativePath Local path to an API method.
-       * @param query An object to convert to the query string, if needed.
-       */
-
 
       _createClass(ApiClient, [{
         key: "get",
@@ -1716,12 +1710,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             }, _callee7, this);
           }));
         }
-        /**
-         * Executes an HTTP POST request to the API.
-         * @param apiRelativePath Local path to an API method.
-         * @param body Request body (will be serialized as JSON automatically).
-         */
-
       }, {
         key: "post",
         value: function post(apiRelativePath) {
@@ -1749,12 +1737,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             }, _callee8, this);
           }));
         }
-        /**
-         * Executes an HTTP PUT request to the API.
-         * @param apiRelativePath Local path to an API method.
-         * @param body Request body (will be serialized as JSON automatically).
-         */
-
       }, {
         key: "put",
         value: function put(apiRelativePath) {
@@ -1782,11 +1764,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             }, _callee9, this);
           }));
         }
-        /**
-         * Executes an HTTP PUT request to the API.
-         * @param apiRelativePath Local path to an API method.
-         */
-
       }, {
         key: "delete",
         value: function _delete(apiRelativePath) {
@@ -1810,10 +1787,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             }, _callee10, this);
           }));
         }
-        /**
-         * Updates the header object
-         */
-
       }, {
         key: "updateHeaders",
         value: function updateHeaders() {
@@ -1821,12 +1794,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             'Content-Type': 'application/json'
           });
         }
-        /**
-         * Converts the specified object to a properly escaped query string.
-         * @param query A simple flat object with properties and values that will be converted to keys and values of a query string
-         * @returns A query string
-         */
-
       }, {
         key: "getQueryStr",
         value: function getQueryStr(query) {
@@ -1872,10 +1839,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             return item.toString();
           }
         }
-        /**
-         * Performs the request
-         */
-
       }, {
         key: "sendRequest",
         value: function sendRequest(request) {

@@ -762,58 +762,31 @@ class ApiClient {
         this.apiUrl = src_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].apiUrl;
         this.updateHeaders();
     }
-    /**
-     * Executes an HTTP GET request to the API.
-     * @param apiRelativePath Local path to an API method.
-     * @param query An object to convert to the query string, if needed.
-     */
     get(apiRelativePath, query) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             return yield this.sendRequest(this.http.get(this.apiUrl + apiRelativePath + this.getQueryStr(query), { headers: this.headers }));
         });
     }
-    /**
-     * Executes an HTTP POST request to the API.
-     * @param apiRelativePath Local path to an API method.
-     * @param body Request body (will be serialized as JSON automatically).
-     */
     post(apiRelativePath, body = null) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             return yield this.sendRequest(this.http.post(this.apiUrl + apiRelativePath, body, { headers: this.headers }));
         });
     }
-    /**
-     * Executes an HTTP PUT request to the API.
-     * @param apiRelativePath Local path to an API method.
-     * @param body Request body (will be serialized as JSON automatically).
-     */
     put(apiRelativePath, body = null) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             return yield this.sendRequest(this.http.put(this.apiUrl + apiRelativePath, body, { headers: this.headers }));
         });
     }
-    /**
-     * Executes an HTTP PUT request to the API.
-     * @param apiRelativePath Local path to an API method.
-     */
     delete(apiRelativePath) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             yield this.sendRequest(this.http.delete(this.apiUrl + apiRelativePath, { headers: this.headers }));
         });
     }
-    /**
-     * Updates the header object
-     */
     updateHeaders() {
         this.headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({
             'Content-Type': 'application/json'
         });
     }
-    /**
-     * Converts the specified object to a properly escaped query string.
-     * @param query A simple flat object with properties and values that will be converted to keys and values of a query string
-     * @returns A query string
-     */
     getQueryStr(query) {
         let str = '';
         if (!query) {
@@ -841,9 +814,6 @@ class ApiClient {
             return item.toString();
         }
     }
-    /**
-     * Performs the request
-     */
     sendRequest(request) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             return yield request.toPromise();
