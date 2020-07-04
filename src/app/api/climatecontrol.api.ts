@@ -16,7 +16,7 @@ export class ClimateControlApi {
         await this.apiClient.post<void>(`settings`, settings);
     }
 
-    public async turnOnOff(deviceId: string, turnOn: boolean): Promise<DeviceState> {
-        return await this.apiClient.get<DeviceState>(`turnOnOff/${deviceId}`, { command: turnOn ? 'TurnOn' : 'TurnOff' });
+    public async turnOnOff(deviceId: string, command: string, interval: number): Promise<DeviceState> {
+        return await this.apiClient.get<DeviceState>(`turnOnOff/${deviceId}`, { command, interval });
     }
 }

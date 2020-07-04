@@ -24,6 +24,10 @@ export class DeviceControlComponent implements AfterViewInit {
   private mobileQueryListener: () => void;
   private portraitQueryListener: () => void;
   public dontSaveSettings = true;
+  public lastForceCommand: string;
+  public lastBusyCommand: string;
+  public intervals = [ 0, 15, 30, 60 ];
+  public intervalIndex = 0;
 
   constructor(
     activatedRoute: ActivatedRoute,
@@ -54,12 +58,42 @@ export class DeviceControlComponent implements AfterViewInit {
     });
   }
 
+  get updateDate(): string {
+    const date = new Date(this.device.state.lastReading);
+    return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+  }
+
   public goToSettings(): void {
     this.router.navigate([`device/${this.deviceId}/settings`]);
   }
 
-  public async turnOnOff(turnOn: boolean): Promise<void> {
-    await this.climateControlApi.turnOnOff(this.deviceId, turnOn);
+  public turnOnOffLabel(command: string): string {
+    const interval = this.intervals[this.intervalIndex];
+    const offon = command === 'TurnOff' ? 'off' : 'on';
+    if (interval && command === this.lastForceCommand) {
+      return 'Keep turned ' + offon + ' for ' + interval + ' min';
+    } else {
+      return 'Turn ' + offon;
+    }
+  }
+
+  public async turnOnOff(command: string): Promise<void> {
+    if (this.lastForceCommand !== command) {
+      this.lastForceCommand = command;
+      this.intervalIndex = 0;
+    }
+
+    const interval = this.intervals[this.intervalIndex];
+    this.intervalIndex++;
+    if (this.intervalIndex >= this.intervals.length) {
+      this.intervalIndex = 0;
+    }
+
+    await this.climateControlApi.turnOnOff(this.deviceId, command, interval);
+  }
+
+  public async test(): Promise<void> {
+    await this.climateControlApi.turnOnOff(this.deviceId, 'Test', 0);
   }
 
   public async saveSettings(): Promise<void> {

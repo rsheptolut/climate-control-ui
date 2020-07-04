@@ -8,9 +8,14 @@
     </div>
 
     <br/>
-    <div class="temperature">
-        <div class="temperature__value">
-            {{device.state.lastAverageTemperature}}
+    <div class="row">
+        <div class="temperature">
+            <div class="temperature__value">
+                {{device.state.lastAverageTemperature}}
+            </div>
+        </div>
+        <div class="update-date">
+            {{updateDate}}
         </div>
     </div>
 
@@ -18,9 +23,11 @@
     <div class="aircon">
         <div class="aircon__heading">A/C</div>
         <div class="aircon__state"></div>
-        <button mat-raised-button color="primary" (click)="turnOnOff(true)">Turn on now</button>
+        <button mat-raised-button color="primary" (click)="turnOnOff('TurnOn')">{{turnOnOffLabel('TurnOn')}}</button>
         &nbsp;&nbsp;
-        <button mat-raised-button color="accent" (click)="turnOnOff(false)">Turn off now</button>
+        <button mat-raised-button color="accent" (click)="turnOnOff('TurnOff')">{{turnOnOffLabel('TurnOff')}}</button>
+        &nbsp;&nbsp;
+        <button mat-raised-button color="accent" (click)="test()">Test</button>
     </div>
 
     <form #form="ngForm">

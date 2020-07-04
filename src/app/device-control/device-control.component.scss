@@ -7,6 +7,10 @@
     margin: 1rem;
 }
 
+.row {
+    display: flex;
+}
+
 .temperature {
     border-radius: 50%;
     padding: 2rem;
@@ -22,6 +26,12 @@
         font-weight: 600;
         font-size: 2.4rem;
     }
+}
+
+.update-date {
+    font-weight: 400;
+    font-size: 1rem;
+    margin-left: 2rem;
 }
 
 .aircon {
