@@ -71,7 +71,7 @@ export class DeviceControlComponent implements AfterViewInit {
     const interval = this.intervals[this.intervalIndex];
     const offon = command === 'TurnOff' ? 'off' : 'on';
     if (interval && command === this.lastForceCommand) {
-      return 'Keep turned ' + offon + ' for ' + interval + ' min';
+      return 'Keep ' + offon + ' ' + interval + ' min';
     } else {
       return 'Turn ' + offon;
     }

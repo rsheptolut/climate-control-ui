@@ -16,6 +16,8 @@
         </div>
         <div class="update-date">
             {{updateDate}}
+            &nbsp;&nbsp;
+            <button mat-raised-button color="accent" (click)="test()">Test</button>
         </div>
     </div>
 
@@ -26,8 +28,6 @@
         <button mat-raised-button color="primary" (click)="turnOnOff('TurnOn')">{{turnOnOffLabel('TurnOn')}}</button>
         &nbsp;&nbsp;
         <button mat-raised-button color="accent" (click)="turnOnOff('TurnOff')">{{turnOnOffLabel('TurnOff')}}</button>
-        &nbsp;&nbsp;
-        <button mat-raised-button color="accent" (click)="test()">Test</button>
     </div>
 
     <form #form="ngForm">
